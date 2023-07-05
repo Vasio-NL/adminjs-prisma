@@ -24,10 +24,10 @@ export class Resource extends BaseResource {
   constructor(args: { model: DMMF.Model, client: PrismaClient }) {
     super(args);
 
-    const { model, client } = args;
+    const { model, client, enumMap } = args;
     this.model = model;
     this.client = client;
-    this.enums = (this.client as any)._baseDmmf.datamodelEnumMap;
+    this.enums = enumMap;
     this.manager = this.client[lowerCase(model.name)];
     this.propertiesObject = this.prepareProperties();
   }
